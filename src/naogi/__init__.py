@@ -23,7 +23,7 @@ class FileRenderer(AbstractRenderer):
     )
 
 class NaogiModel(ABC):
-  def __init__(self, renderer=JsonRenderer):
+  def __init__(self):
     super()
     self.model = None
 
