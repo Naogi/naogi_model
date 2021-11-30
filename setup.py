@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="naogi",
-    version="0.0.4",
+    version="0.0.5",
     author="Evgeny Breykin",
     author_email="zbrejkin@yandex.ru",
     description="Abstract class for Naogi ML deployment",
