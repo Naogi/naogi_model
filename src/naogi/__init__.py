@@ -27,10 +27,16 @@ class FileRenderer(AbstractRenderer):
 
 class PilImageRenderer(FileRenderer):
   @classmethod
-  def render(cls, image, _format='JPEG', **kwargs):
+  def render(cls, image, content_format=None, **kwargs):
+    image.format = content_format or 'JPEG'
+
+    if 'content_type' not in kwargs:
+      kwargs['content_type'] = image.get_format_mimetype() or 'image/jpeg'
+
     bytes_io = io.BytesIO()
-    image.save(bytes_io, _format)
+    image.save(bytes_io, image.format)
     bytes_io.seek(0)
+
     return super().render(bytes_io, **kwargs)
 
 class NaogiModel(ABC):
@@ -52,3 +58,9 @@ class NaogiModel(ABC):
 
   def renderer(self):
     return JsonRenderer
+
+  def render_options_dict(self):
+    return dict()
+
+  def _render(self, result):
+    return self.renderer().render(result, **self.render_options_dict())

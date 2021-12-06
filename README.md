@@ -78,16 +78,23 @@ def renderer(self):
 <br>
 
 ### Fin
-And finally you can make API calls to `\<your-naogi-project-url\>/predict` with params
+And finally you can make API calls to `<your-naogi-project-url>/predict` with params
 
 
 ## Development
 ...
 
-## Testing
+### Testing
 Before testing you should install **pytest**
 
 From root folder
 ```shell
 PYTHONPATH='./' pytest tests/renderers/pil_image_renderer.py
+```
+
+### Deploy
+```shell
+rm -rf dist/*
+python3 -m build
+python3 -m twine upload --repository pypi dist/*
 ```
