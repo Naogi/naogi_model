@@ -31,7 +31,10 @@ class PilImageRenderer(FileRenderer):
     image.format = content_format or 'JPEG'
 
     if 'content_type' not in kwargs:
-      kwargs['content_type'] = image.get_format_mimetype() or 'image/jpeg'
+      try:
+        kwargs['content_type'] = image.get_format_mimetype()
+      except AttributeError:
+        kwargs['content_type'] = 'image/jpeg'
 
     bytes_io = io.BytesIO()
     image.save(bytes_io, image.format)
