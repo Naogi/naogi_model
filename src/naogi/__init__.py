@@ -15,6 +15,9 @@ class JsonRenderer(AbstractRenderer):
   def render(cls, data):
     return json.dumps(data)
 
+# For more information about downloadable True/False
+# https://tedboy.github.io/flask/generated/flask.send_file.html
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition
 class FileRenderer(AbstractRenderer):
   @classmethod
   def render(cls, binary, filename='file', content_type=None, downloadable=False):
